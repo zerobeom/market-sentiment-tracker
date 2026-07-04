@@ -31,7 +31,7 @@ body{
 }
 
 .wrap{
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -79,7 +79,7 @@ a{ color: inherit; }
 
 .sentiment-bar{ padding: 0 0 22px; }
 .sentiment-track{
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
   height: 8px;
@@ -98,7 +98,7 @@ a{ color: inherit; }
   transition: left .6s ease;
 }
 .sentiment-labels{
-  max-width: 980px;
+  max-width: 1180px;
   margin: 8px auto 0;
   padding: 0 24px;
   display:flex;
