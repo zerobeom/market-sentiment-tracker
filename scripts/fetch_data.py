@@ -4,6 +4,7 @@
 2) Yahoo Finance에서 VIX(^VIX) 최근 6개월 데이터를 가져와 data/vix.json 에 저장
 """
 import json
+import time
 import urllib.request
 from datetime import datetime, timezone
 
@@ -12,11 +13,33 @@ HEADERS = {
                   "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 }
 
+# CNN의 fearandgreed API는 일반 User-Agent만으로는 봇 차단(HTTP 418)이 걸려서
+# 실제 브라우저에서 보내는 것과 최대한 비슷한 헤더를 추가로 넣어줘요.
+CNN_HEADERS = {
+    **HEADERS,
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://edition.cnn.com",
+    "Referer": "https://edition.cnn.com/markets/fear-and-greed",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-site",
+    "Sec-Fetch-Dest": "empty",
+}
 
-def fetch_json(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=20) as res:
-        return json.loads(res.read().decode("utf-8"))
+
+def fetch_json(url, headers=None, retries=3, delay=5):
+    last_err = None
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(url, headers=headers or HEADERS)
+            with urllib.request.urlopen(req, timeout=20) as res:
+                return json.loads(res.read().decode("utf-8"))
+        except Exception as e:
+            last_err = e
+            print(f"  요청 실패 (시도 {attempt}/{retries}): {e}")
+            if attempt < retries:
+                time.sleep(delay)
+    raise last_err
 
 
 def score_to_rating(score):
@@ -40,7 +63,7 @@ def extract_score(value):
 
 def update_fng():
     url = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
-    raw = fetch_json(url)
+    raw = fetch_json(url, headers=CNN_HEADERS)
 
     fg = raw["fear_and_greed"]
     hist = raw["fear_and_greed_historical"]["data"]
@@ -80,7 +103,7 @@ def update_fng():
 
 def update_vix():
     url = "https://query1.finance.yahoo.com/v8/finance/chart/%5EVIX?range=6mo&interval=1d"
-    raw = fetch_json(url)
+    raw = fetch_json(url, headers=HEADERS)
 
     result = raw["chart"]["result"][0]
     timestamps = result["timestamp"]
@@ -117,5 +140,21 @@ def update_vix():
 
 
 if __name__ == "__main__":
-    update_fng()
-    update_vix()
+    ok = True
+
+    try:
+        update_fng()
+    except Exception as e:
+        ok = False
+        print("⚠️ Fear & Greed 데이터 갱신 실패:", e)
+
+    try:
+        update_vix()
+    except Exception as e:
+        ok = False
+        print("⚠️ VIX 데이터 갱신 실패:", e)
+
+    if not ok:
+        # 둘 중 하나라도 실패하면 GitHub Actions에서 눈에 띄게 실패 표시를 하되,
+        # 성공한 쪽 데이터 파일은 그대로 커밋되도록 커밋 스텝은 계속 진행시킴.
+        raise SystemExit(1)
