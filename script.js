@@ -27,6 +27,16 @@ function formatDate(iso) {
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 }
 
+function formatKST(iso) {
+  const d = new Date(iso);
+  const parts = new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hour12: false,
+  }).formatToParts(d).reduce((acc, p) => { acc[p.type] = p.value; return acc; }, {});
+  return `${parts.year}.${parts.month}.${parts.day} ${parts.hour}:${parts.minute} (KST)`;
+}
+
 // ------------------------------------------------------------------
 // Fear & Greed 게이지 그리기
 // ------------------------------------------------------------------
@@ -182,6 +192,6 @@ async function loadVix() {
   const [fng] = await Promise.all([loadFng(), loadVix()]);
   if (fng) {
     document.getElementById("last-updated").textContent =
-      `마지막 업데이트: ${formatDate(fng.updated_at)}`;
+      `마지막 업데이트: ${formatKST(fng.updated_at)}`;
   }
 })();
