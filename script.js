@@ -65,7 +65,28 @@ function drawFngGauge(score) {
                      stroke="var(--text)" stroke-width="4" stroke-linecap="round"/>
                    <circle cx="${cx}" cy="${cy}" r="7" fill="var(--text)"/>`;
 
-  svg.innerHTML = paths + needle;
+  // 밴드 위에 EXTREME FEAR / FEAR / NEUTRAL / GREED / EXTREME GREED 라벨 표시
+  const labels = [
+    { from: 0, to: 25, text: "EXTREME FEAR", size: 9 },
+    { from: 25, to: 45, text: "FEAR", size: 12 },
+    { from: 45, to: 55, text: "NEUTRAL", size: 10 },
+    { from: 55, to: 75, text: "GREED", size: 12 },
+    { from: 75, to: 100, text: "EXTREME GREED", size: 9 },
+  ];
+  let labelText = "";
+  labels.forEach(l => {
+    const mid = (l.from + l.to) / 2;
+    const angle = -90 + (mid / 100) * 180;
+    const pos = polarToCartesian(cx, cy, r, angle);
+    labelText += `<text x="${pos.x}" y="${pos.y}"
+        transform="rotate(${angle} ${pos.x} ${pos.y})"
+        text-anchor="middle" dominant-baseline="middle"
+        font-family="var(--sans)" font-weight="700" letter-spacing="0.02em"
+        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"
+        paint-order="stroke fill">${l.text}</text>`;
+  });
+
+  svg.innerHTML = paths + labelText + needle;
 }
 
 // ------------------------------------------------------------------

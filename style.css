@@ -28,6 +28,8 @@ body{
   font-family: var(--sans);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .wrap{
@@ -135,6 +137,7 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
   margin: 0 0 28px;
   font-size: 15px;
 }
+.nowrap{ white-space: nowrap; }
 
 .source{
   margin-top: 28px;
