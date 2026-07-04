@@ -23,6 +23,7 @@ jobs:
 
       - name: Fetch latest market data
         run: python scripts/fetch_data.py
+        continue-on-error: true   # 한쪽 소스가 막혀도 성공한 데이터는 커밋되도록
 
       - name: Commit and push updated data
         run: |
