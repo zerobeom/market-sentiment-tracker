@@ -134,7 +134,6 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
 
 .desc{
   color: var(--text-muted);
-  max-width: 62ch;
   margin: 0 0 28px;
   font-size: 15px;
 }
