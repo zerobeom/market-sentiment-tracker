@@ -22,6 +22,14 @@ function ratingColor(label) {
   return "var(--neutral)";
 }
 
+function scoreToRating(score) {
+  if (score < 25) return "Extreme Fear";
+  if (score < 45) return "Fear";
+  if (score < 55) return "Neutral";
+  if (score < 75) return "Greed";
+  return "Extreme Greed";
+}
+
 function formatDate(iso) {
   const d = new Date(iso);
   return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
@@ -153,11 +161,84 @@ function drawLineChart(svgId, points, color, opts = {}) {
   const lastPoint = points[points.length - 1];
 
   svg.innerHTML = `
-    ${grid}
+    <g class="chart-grid">${grid}</g>
     <polyline points="${linePoints}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="${x(points.length - 1)}" cy="${y(lastPoint.value)}" r="4.5" fill="${color}"/>
-    ${xLabels}
+    <g class="chart-hover-layer"></g>
+    <g class="x-labels">${xLabels}</g>
+    <rect class="hover-capture" x="${padL}" y="0" width="${chartW}" height="${H}" fill="transparent" style="cursor:crosshair"/>
   `;
+
+  if (opts.tooltipFormat) {
+    attachChartTooltip(svg, points, x, y, padT, padT + chartH, color, opts.tooltipFormat);
+  }
+}
+
+// ------------------------------------------------------------------
+// 차트 위에 마우스를 올리면 해당 시점의 데이터를 보여주는 툴팁
+// ------------------------------------------------------------------
+function attachChartTooltip(svg, points, x, y, top, bottom, color, tooltipFormat) {
+  const wrap = svg.parentElement;
+  wrap.style.position = "relative";
+
+  let tooltip = wrap.querySelector(".chart-tooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.className = "chart-tooltip";
+    wrap.appendChild(tooltip);
+  }
+  const hoverLayer = svg.querySelector(".chart-hover-layer");
+
+  function pointerToSvgX(clientX) {
+    const rect = svg.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    const scaleX = vb.width / rect.width;
+    return { svgX: (clientX - rect.left) * scaleX, rect, scaleX };
+  }
+
+  function nearestIndex(svgX) {
+    let idx = 0, minDist = Infinity;
+    points.forEach((p, i) => {
+      const d = Math.abs(x(i) - svgX);
+      if (d < minDist) { minDist = d; idx = i; }
+    });
+    return idx;
+  }
+
+  function show(clientX) {
+    const { svgX, rect, scaleX } = pointerToSvgX(clientX);
+    const idx = nearestIndex(svgX);
+    const p = points[idx];
+    const px = x(idx), py = y(p.value);
+
+    hoverLayer.innerHTML = `
+      <line x1="${px}" y1="${top}" x2="${px}" y2="${bottom}" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+      <circle cx="${px}" cy="${py}" r="5.5" fill="#fff" stroke="${color}" stroke-width="2.5"/>
+    `;
+
+    tooltip.innerHTML = tooltipFormat(p);
+    tooltip.style.opacity = "1";
+
+    const wrapRect = wrap.getBoundingClientRect();
+    const screenX = rect.left - wrapRect.left + px / scaleX;
+    const tooltipW = tooltip.offsetWidth;
+    let left = screenX + 12;
+    if (left + tooltipW > wrap.clientWidth) left = screenX - tooltipW - 12;
+    tooltip.style.left = `${Math.max(0, left)}px`;
+    tooltip.style.top = "6px";
+  }
+
+  function hide() {
+    hoverLayer.innerHTML = "";
+    tooltip.style.opacity = "0";
+  }
+
+  const capture = svg.querySelector(".hover-capture");
+  capture.addEventListener("mousemove", e => show(e.clientX));
+  capture.addEventListener("mouseleave", hide);
+  capture.addEventListener("touchstart", e => show(e.touches[0].clientX), { passive: true });
+  capture.addEventListener("touchmove", e => show(e.touches[0].clientX), { passive: true });
+  capture.addEventListener("touchend", hide);
 }
 
 // ------------------------------------------------------------------
@@ -181,7 +262,13 @@ async function loadFng() {
 
     drawFngGauge(data.score);
     drawFngHistory(data);
-    drawLineChart("fng-timeline", data.timeline, ratingColor(data.rating), { min: 0, max: 100 });
+    drawLineChart("fng-timeline", data.timeline, ratingColor(data.rating), {
+      min: 0, max: 100,
+      tooltipFormat: p => `
+        <div class="tt-date">${formatDate(p.date)}</div>
+        <div class="tt-value" style="color:${ratingColor(scoreToRating(p.value))}">${p.value} · ${scoreToRating(p.value)}</div>
+      `,
+    });
     setSentimentTick(data.score);
 
     return data;
@@ -201,7 +288,13 @@ async function loadVix() {
     changeEl.textContent = `${sign}${data.change_pct}% (전일 대비)`;
     changeEl.style.color = data.change_pct >= 0 ? "var(--fear)" : "var(--greed)";
 
-    drawLineChart("vix-chart", data.timeline, "var(--vix)", { gridSteps: [10, 20, 30, 40] });
+    drawLineChart("vix-chart", data.timeline, "var(--vix)", {
+      gridSteps: [10, 20, 30, 40],
+      tooltipFormat: p => `
+        <div class="tt-date">${formatDate(p.date)}</div>
+        <div class="tt-value" style="color:var(--vix)">${p.value}</div>
+      `,
+    });
 
     return data;
   } catch (e) {

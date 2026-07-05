@@ -202,8 +202,29 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
   letter-spacing: 0.06em;
   margin: 0 0 8px;
 }
-.fng-timeline-wrap{ margin-top: 36px; }
-#fng-timeline{ width:100%; height:auto; }
+.fng-timeline-wrap{ margin-top: 36px; position: relative; }
+#fng-timeline{ width:100%; height:auto; display:block; }
+
+.chart-tooltip{
+  position: absolute;
+  top: 6px;
+  left: 0;
+  background: var(--text);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .1s ease;
+  z-index: 5;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+.chart-tooltip .tt-date{ color: rgba(255,255,255,0.65); font-size: 11px; }
+.chart-tooltip .tt-value{ font-weight: 600; }
 
 /* ---------- Yardeni ---------- */
 .yardeni-grid{
@@ -294,7 +315,8 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
 }
 .vix-change{ font-family: var(--mono); font-size: 15px; color: var(--text-muted); margin-top: 4px; }
 .vix-hint{ font-size: 12px; color: var(--text-muted); margin-top: 10px; }
-#vix-chart{ width:100%; height:auto; }
+.vix-chart-wrap{ position: relative; }
+#vix-chart{ width:100%; height:auto; display:block; }
 
 /* ---------- Footer ---------- */
 .page-footer{
