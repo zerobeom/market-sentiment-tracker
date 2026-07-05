@@ -14,7 +14,7 @@
 
   --serif: "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
-  --mono: 'IBM Plex Mono', 'Pretendard Variable', Pretendard, ui-monospace, monospace;
+  --mono: "Pretendard Variable", Pretendard, system-ui, sans-serif;
 }
 
 *{ box-sizing: border-box; }
@@ -195,15 +195,21 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
 /* ---------- Yardeni ---------- */
 .yardeni-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 48px;
 }
-@media (max-width: 720px){ .yardeni-grid{ grid-template-columns: 1fr; } }
+.yardeni-col{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 720px){ .yardeni-col{ grid-template-columns: 1fr; } }
 
 .yardeni-col h3{
+  grid-column: 1 / -1;
   font-family: var(--serif);
   font-size: 19px;
-  margin: 0 0 18px;
+  margin: 0 0 4px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--hairline);
 }
