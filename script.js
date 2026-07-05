@@ -209,7 +209,29 @@ async function loadVix() {
   }
 }
 
+// ------------------------------------------------------------------
+// Yardeni 차트 이미지 클릭 시 확대(라이트박스)
+// ------------------------------------------------------------------
+function initLightbox() {
+  const lightbox = document.getElementById("img-lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  document.querySelectorAll(".yardeni-col img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add("open");
+    });
+  });
+
+  lightbox.addEventListener("click", () => lightbox.classList.remove("open"));
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") lightbox.classList.remove("open");
+  });
+}
+
 (async function init() {
+  initLightbox();
   const [fng] = await Promise.all([loadFng(), loadVix()]);
   if (fng) {
     document.getElementById("last-updated").textContent =

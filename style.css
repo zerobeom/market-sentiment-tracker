@@ -240,6 +240,31 @@ main.wrap{ padding-top: 48px; padding-bottom: 40px; }
   height: auto;
   border-radius: 4px;
   background: #fff;
+  cursor: zoom-in;
+  transition: transform .18s ease;
+}
+.yardeni-col img:hover{ transform: scale(1.015); }
+
+/* ---------- 이미지 확대(라이트박스) ---------- */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,14,0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+.lightbox.open{ display: flex; }
+.lightbox img{
+  max-width: 96vw;
+  max-height: 92vh;
+  width: auto;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
 }
 .yardeni-col figure.broken img{ display:none; }
 .yardeni-col figure.broken::after{
