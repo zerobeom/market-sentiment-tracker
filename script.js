@@ -242,13 +242,6 @@ function attachChartTooltip(svg, points, x, y, top, bottom, color, tooltipFormat
 }
 
 // ------------------------------------------------------------------
-// 상단 센티먼트 바 눈금 위치
-// ------------------------------------------------------------------
-function setSentimentTick(score) {
-  document.getElementById("sentiment-tick").style.left = `calc(${score}% - 1px)`;
-}
-
-// ------------------------------------------------------------------
 // 데이터 로드 및 렌더링
 // ------------------------------------------------------------------
 async function loadFng() {
@@ -269,7 +262,6 @@ async function loadFng() {
         <div class="tt-value" style="color:${ratingColor(scoreToRating(p.value))}">${p.value} · ${scoreToRating(p.value)}</div>
       `,
     });
-    setSentimentTick(data.score);
 
     return data;
   } catch (e) {

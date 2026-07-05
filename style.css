@@ -80,39 +80,6 @@ a{ color: inherit; }
   margin: 0;
 }
 
-.sentiment-bar{ padding: 0 0 22px; }
-.sentiment-track{
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
-  height: 8px;
-  border-radius: 999px;
-  position: relative;
-  background: linear-gradient(90deg, var(--fear), var(--neutral), var(--greed));
-}
-.sentiment-tick{
-  position: absolute;
-  top: -5px;
-  width: 3px;
-  height: 18px;
-  background: var(--text);
-  border-radius: 2px;
-  left: 32%;
-  transition: left .6s ease;
-}
-.sentiment-labels{
-  max-width: 1180px;
-  margin: 8px auto 0;
-  padding: 0 24px;
-  display:flex;
-  justify-content: space-between;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
 /* ---------- Sections / Cards ---------- */
 main.wrap{ padding-top: 48px; padding-bottom: 40px; }
 
