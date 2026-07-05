@@ -75,11 +75,11 @@ function drawFngGauge(score) {
 
   // 밴드 위에 EXTREME FEAR / FEAR / NEUTRAL / GREED / EXTREME GREED 라벨 표시
   const labels = [
-    { from: 0, to: 25, text: "EXTREME FEAR", size: 9 },
-    { from: 25, to: 45, text: "FEAR", size: 12 },
-    { from: 45, to: 55, text: "NEUTRAL", size: 10 },
-    { from: 55, to: 75, text: "GREED", size: 12 },
-    { from: 75, to: 100, text: "EXTREME GREED", size: 9 },
+    { from: 0, to: 25, text: "EXTREME FEAR", size: 8.5 },
+    { from: 25, to: 45, text: "FEAR", size: 11 },
+    { from: 45, to: 55, text: "NEUTRAL", size: 8 },
+    { from: 55, to: 75, text: "GREED", size: 11 },
+    { from: 75, to: 100, text: "EXTREME GREED", size: 8.5 },
   ];
   let labelText = "";
   labels.forEach(l => {
@@ -89,8 +89,8 @@ function drawFngGauge(score) {
     labelText += `<text x="${pos.x}" y="${pos.y}"
         transform="rotate(${angle} ${pos.x} ${pos.y})"
         text-anchor="middle" dominant-baseline="middle"
-        font-family="var(--sans)" font-weight="700" letter-spacing="0.02em"
-        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.18)" stroke-width="0.6"
+        font-family="'Pretendard Variable', Pretendard, -apple-system, sans-serif" font-weight="700" letter-spacing="0.01em"
+        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.16)" stroke-width="0.5"
         paint-order="stroke fill">${l.text}</text>`;
   });
 

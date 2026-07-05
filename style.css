@@ -14,7 +14,7 @@
 
   --serif: "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --mono: 'IBM Plex Mono', 'Pretendard Variable', Pretendard, ui-monospace, monospace;
 }
 
 *{ box-sizing: border-box; }
