@@ -12,8 +12,8 @@
   --greed: #2f9e79;
   --vix: #3b6fd1;
 
-  --serif: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-  --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  --serif: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
@@ -30,6 +30,7 @@ body{
   -webkit-font-smoothing: antialiased;
   word-break: keep-all;
   overflow-wrap: break-word;
+  font-feature-settings: "tnum" 1;
 }
 
 .wrap{
