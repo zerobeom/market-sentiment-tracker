@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-07-06T12:26:23.725276+00:00",
-  "score": 34.1,
+  "updated_at": "2026-07-07T10:31:17.887713+00:00",
+  "score": 44.5,
   "rating": "fear",
   "previous_close": {
     "label": "Fear",
-    "value": 34.1
+    "value": 43.9
   },
   "previous_1_week": {
     "label": "Fear",
-    "value": 27.3
+    "value": 30.9
   },
   "previous_1_month": {
     "label": "Fear",
@@ -16,13 +16,9 @@
   },
   "previous_1_year": {
     "label": "Extreme Greed",
-    "value": 77.6
+    "value": 75.1
   },
   "timeline": [
-    {
-      "date": "2025-09-19",
-      "value": 66.2
-    },
     {
       "date": "2025-09-22",
       "value": 66.5
@@ -805,19 +801,23 @@
     },
     {
       "date": "2026-07-02",
-      "value": 34.1
+      "value": 37.5
     },
     {
       "date": "2026-07-03",
-      "value": 34.1
+      "value": 32.4
     },
     {
       "date": "2026-07-06",
-      "value": 34.1
+      "value": 44.5
     },
     {
-      "date": "2026-07-06",
-      "value": 34.1
+      "date": "2026-07-07",
+      "value": 44.5
+    },
+    {
+      "date": "2026-07-07",
+      "value": 44.5
     }
   ],
   "source": {
