@@ -8,9 +8,12 @@
   --hairline: #e6e6ea;
 
   --fear: #d6483d;
+  --fear-deep: #b23a30;
   --neutral: #d69a1f;
   --greed: #2f9e79;
+  --greed-deep: #2f7f6f;
   --vix: #3b6fd1;
+  --needle: var(--text);
 
   --serif: "Pretendard Variable", Pretendard, system-ui, sans-serif;
   --sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
@@ -47,7 +50,7 @@ a{ color: inherit; }
   background: var(--bg);
   border-bottom: 1px solid var(--hairline);
 }
-.page-header .wrap{ padding-bottom: 18px; }
+.page-header .wrap{ padding-bottom: 18px; text-align: center; }
 
 .eyebrow{
   font-family: var(--mono);
@@ -70,7 +73,7 @@ a{ color: inherit; }
 .subtitle{
   color: var(--text-muted);
   font-size: 14px;
-  margin: 0 0 12px;
+  margin: 0 auto 12px;
   max-width: 46ch;
 }
 
