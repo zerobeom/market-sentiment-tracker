@@ -70,8 +70,8 @@ function drawFngGauge(score) {
   const needleAngle = -90 + (score / 100) * 180;
   const tip = polarToCartesian(cx, cy, r - 32, needleAngle);
   const needle = `<line x1="${cx}" y1="${cy}" x2="${tip.x}" y2="${tip.y}"
-                     stroke="var(--text)" stroke-width="4" stroke-linecap="round"/>
-                   <circle cx="${cx}" cy="${cy}" r="7" fill="var(--text)"/>`;
+                     stroke="var(--needle)" stroke-width="4" stroke-linecap="round"/>
+                   <circle cx="${cx}" cy="${cy}" r="7" fill="var(--needle)"/>`;
 
   // 밴드 위에 EXTREME FEAR / FEAR / NEUTRAL / GREED / EXTREME GREED 라벨 표시
   const labels = [
@@ -89,8 +89,8 @@ function drawFngGauge(score) {
     labelText += `<text x="${pos.x}" y="${pos.y}"
         transform="rotate(${angle} ${pos.x} ${pos.y})"
         text-anchor="middle" dominant-baseline="middle"
-        font-family="'Noto Serif KR', 'Pretendard Variable', serif" font-weight="700" letter-spacing="0.01em"
-        font-size="${l.size}" fill="#fffdf8" stroke="rgba(28,26,22,0.35)" stroke-width="0.5"
+        font-family="'Pretendard Variable', Pretendard, system-ui, sans-serif" font-weight="800" letter-spacing="0.01em"
+        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.22)" stroke-width="0.5"
         paint-order="stroke fill">${l.text}</text>`;
   });
 
