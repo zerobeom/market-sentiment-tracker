@@ -243,7 +243,11 @@ a{ color: inherit; }
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  line-height: 1.4;
   margin-bottom: 6px;
+  min-height: 2.8em;
+  display: flex;
+  align-items: flex-start;
 }
 .yardeni-col img{
   display:block; width:100%; height:auto;
