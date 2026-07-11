@@ -15,8 +15,8 @@ function describeArc(cx, cy, r, startAngle, endAngle) {
 
 function ratingColor(label) {
   const l = (label || "").toLowerCase();
-  if (l.includes("extreme fear")) return "var(--fear-deep)";
-  if (l.includes("extreme greed")) return "var(--greed-deep)";
+  if (l.includes("extreme fear")) return "#b23a30";
+  if (l.includes("extreme greed")) return "#2f7f6f";
   if (l.includes("fear")) return "var(--fear)";
   if (l.includes("greed")) return "var(--greed)";
   return "var(--neutral)";
@@ -52,11 +52,11 @@ function drawFngGauge(score) {
   const svg = document.getElementById("fng-gauge");
   const cx = 150, cy = 170, r = 130, strokeWidth = 26;
   const bands = [
-    { from: 0, to: 25, color: "var(--fear-deep)" },
+    { from: 0, to: 25, color: "#b23a30" },
     { from: 25, to: 45, color: "var(--fear)" },
     { from: 45, to: 55, color: "var(--neutral)" },
     { from: 55, to: 75, color: "var(--greed)" },
-    { from: 75, to: 100, color: "var(--greed-deep)" },
+    { from: 75, to: 100, color: "#2f7f6f" },
   ];
 
   let paths = "";
@@ -70,8 +70,8 @@ function drawFngGauge(score) {
   const needleAngle = -90 + (score / 100) * 180;
   const tip = polarToCartesian(cx, cy, r - 32, needleAngle);
   const needle = `<line x1="${cx}" y1="${cy}" x2="${tip.x}" y2="${tip.y}"
-                     stroke="var(--needle)" stroke-width="4" stroke-linecap="round"/>
-                   <circle cx="${cx}" cy="${cy}" r="7" fill="var(--needle)"/>`;
+                     stroke="var(--text)" stroke-width="4" stroke-linecap="round"/>
+                   <circle cx="${cx}" cy="${cy}" r="7" fill="var(--text)"/>`;
 
   // 밴드 위에 EXTREME FEAR / FEAR / NEUTRAL / GREED / EXTREME GREED 라벨 표시
   const labels = [
@@ -89,8 +89,8 @@ function drawFngGauge(score) {
     labelText += `<text x="${pos.x}" y="${pos.y}"
         transform="rotate(${angle} ${pos.x} ${pos.y})"
         text-anchor="middle" dominant-baseline="middle"
-        font-family="'Pretendard Variable', Pretendard, system-ui, sans-serif" font-weight="800" letter-spacing="0.01em"
-        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.22)" stroke-width="0.5"
+        font-family="'Pretendard Variable', Pretendard, -apple-system, sans-serif" font-weight="700" letter-spacing="0.01em"
+        font-size="${l.size}" fill="#ffffff" stroke="rgba(0,0,0,0.16)" stroke-width="0.5"
         paint-order="stroke fill">${l.text}</text>`;
   });
 

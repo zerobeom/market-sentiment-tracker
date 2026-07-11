@@ -4,134 +4,141 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Market Pulse — 시장 심리 트래커</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" as="style" crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap topbar-inner">
-    <span class="brand">MARKET PULSE</span>
-    <span class="updated" id="last-updated">마지막 업데이트 확인 중...</span>
+<header class="page-header">
+  <div class="wrap">
+    <p class="eyebrow">MARKET PULSE / 매일 자동 갱신</p>
+    <h1>시장 심리 트래커</h1>
+    <p class="subtitle">공포·탐욕 지수, 밸류에이션, 변동성을 한 화면에서 확인해요.</p>
+    <p class="updated" id="last-updated">마지막 업데이트 확인 중...</p>
   </div>
 </header>
 
-<!-- ============ HERO : Fear & Greed ============ -->
-<section class="hero">
-  <div class="wrap hero-inner">
-    <p class="eyebrow">오늘의 시장 심리 · FEAR &amp; GREED INDEX</p>
+<main class="wrap">
 
-    <div class="hero-main">
-      <div class="hero-gauge-block">
-        <div class="fng-gauge-wrap">
-          <svg id="fng-gauge" viewBox="0 0 300 190" aria-label="Fear and Greed gauge"></svg>
-          <div class="fng-score" id="fng-score">--</div>
-          <div class="fng-rating" id="fng-rating">-</div>
-        </div>
+  <!-- 1. Fear & Greed -->
+  <section class="card" id="fng-section">
+    <div class="section-head">
+      <p class="eyebrow">01 — SENTIMENT</p>
+      <h2>Fear &amp; Greed Index</h2>
+      <p class="desc">CNN Business가 매일 발표하는 투자 심리 지수예요. 시장 변동성, 모멘텀, 안전자산 수요 등 <span class="nowrap">7개</span> 지표를 종합해 0(극단적 공포)에서 100(극단적 탐욕) 사이의 점수로 나타내요.</p>
+    </div>
+
+    <div class="fng-grid">
+      <div class="fng-gauge-wrap">
+        <svg id="fng-gauge" viewBox="0 0 300 190" aria-label="Fear and Greed gauge"></svg>
+        <div class="fng-score" id="fng-score">--</div>
+        <div class="fng-rating" id="fng-rating">-</div>
       </div>
-
-      <div class="hero-side">
-        <p class="hero-desc">CNN Business가 매일 발표하는 투자 심리 지수예요. 시장 변동성, 모멘텀, 안전자산 수요 등 <span class="nowrap">7개</span> 지표를 종합해 0(극단적 공포)에서 100(극단적 탐욕) 사이의 점수로 나타내요.</p>
-        <div class="fng-history" id="fng-history"></div>
-        <p class="hero-source">출처: <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" rel="noopener">CNN Business — Fear &amp; Greed Index</a></p>
+      <div class="fng-history" id="fng-history">
+        <!-- JS로 채워짐 -->
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============ BENTO GRID ============ -->
-<main class="wrap bento-wrap">
-  <div class="bento">
-
-    <div class="bento-tile tile-timeline">
-      <p class="chart-label">Fear &amp; Greed · 타임라인</p>
+    <div class="fng-timeline-wrap">
+      <p class="chart-label">타임라인 (최근 추이)</p>
       <svg id="fng-timeline" viewBox="0 0 900 260" aria-label="Fear and Greed timeline"></svg>
     </div>
 
-    <div class="bento-tile tile-vix">
-      <p class="eyebrow">VOLATILITY</p>
-      <h2>VIX 변동성 지수</h2>
-      <p class="desc">S&amp;P 500 옵션 가격으로 계산되는 '공포 지수'예요. 높을수록 시장이 크게 흔들릴 거라 예상한다는 뜻이에요.</p>
+    <p class="source">출처: <a href="https://edition.cnn.com/markets/fear-and-greed" target="_blank" rel="noopener">CNN Business — Fear &amp; Greed Index</a></p>
+  </section>
 
+  <!-- 2. Yardeni -->
+  <section class="card" id="yardeni-section">
+    <div class="section-head">
+      <p class="eyebrow">02 — VALUATION &amp; EARNINGS</p>
+      <h2>Yardeni MSCI 국가별 밸류에이션</h2>
+      <p class="desc">Yardeni Research가 매일 갱신하는 MSCI 한국·미국 지수의 주당 매출, 주당 순이익, 이익률, 밸류에이션(Forward P/E) 차트예요. 원본 이미지를 그대로 불러와서 보여줘요.</p>
+    </div>
+
+    <div class="yardeni-grid">
+      <div class="yardeni-col">
+        <h3>South Korea</h3>
+        <figure>
+          <figcaption>Figure 3 — Revenues per Share</figcaption>
+          <img loading="lazy" alt="Korea MSCI Revenues per Share"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=8fa9fb04-7ef5-4e2c-b4cb-742fddb3b27f&chartname=3%20-%20MSCI%20Korea%20Revenue%20Per%20Share&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 4 — Earnings per Share</figcaption>
+          <img loading="lazy" alt="Korea MSCI Earnings per Share"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=ae788293-73e9-4f63-9d2d-c02f00460128&chartname=4%20-%20MSCI%20Korea%20Earnings%20Per%20Share&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 5 — Profit Margin</figcaption>
+          <img loading="lazy" alt="Korea MSCI Profit Margin"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=295f4f2c-166e-473b-8c34-cd686340070b&chartname=5%20-%20MSCI%20Korea%20Forward%20Profit%20Margin&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 9 — Valuation Multiple (Forward P/E)</figcaption>
+          <img loading="lazy" alt="Korea MSCI Valuation Multiple"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=2e7101cb-f454-4426-9fa3-247f76d0f4f7&chartname=9a%20-MSCI%20Korea%20Valuation&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+      </div>
+
+      <div class="yardeni-col">
+        <h3>United States</h3>
+        <figure>
+          <figcaption>Figure 3 — Revenues per Share</figcaption>
+          <img loading="lazy" alt="United States MSCI Revenues per Share"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=764b45ab-5ce7-43f7-a578-9c16242fcf48&chartname=3%20-%20MSCI%20United%20States%20Revenue%20Per%20Share&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 4 — Earnings per Share</figcaption>
+          <img loading="lazy" alt="United States MSCI Earnings per Share"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=43218fec-13de-4ff9-a8f5-169fa2f33e82&chartname=4%20-%20MSCI%20United%20States%20Earnings%20Per%20Share&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 5 — Profit Margin</figcaption>
+          <img loading="lazy" alt="United States MSCI Profit Margin"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=fff2de26-be5f-471e-ac54-a7deefe28270&chartname=5%20-%20MSCI%20United%20States%20Forward%20Profit%20Margin&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+        <figure>
+          <figcaption>Figure 9 — Valuation Multiple (Forward P/E)</figcaption>
+          <img loading="lazy" alt="United States MSCI Valuation Multiple"
+               src="https://product.datastream.com/dscharting/gateway.aspx?guid=ea6e7eba-11dd-493e-90df-d3a924c42b81&chartname=9a%20-MSCI%20United%20States%20Valuation&action=REFRESH"
+               onerror="this.closest('figure').classList.add('broken')">
+        </figure>
+      </div>
+    </div>
+
+    <p class="source">출처: <a href="https://www.yardeni.com/charts/global-index-briefings/msci-countries/korea" target="_blank" rel="noopener">Yardeni Research — Korea</a> · <a href="https://www.yardeni.com/charts/global-index-briefings/msci-countries/gib-united-states" target="_blank" rel="noopener">Yardeni Research — United States</a> (Data: LSEG Datastream, MSCI)</p>
+  </section>
+
+  <!-- 3. VIX -->
+  <section class="card" id="vix-section">
+    <div class="section-head">
+      <p class="eyebrow">03 — VOLATILITY</p>
+      <h2>VIX 변동성 지수</h2>
+      <p class="desc">S&amp;P 500 옵션 가격을 바탕으로 계산되는 '공포 지수'예요. 숫자가 높을수록 투자자들이 앞으로 시장이 크게 흔들릴 거라 예상한다는 뜻이에요. 통상 20 이하는 안정, 30 이상은 불안 국면으로 봐요.</p>
+    </div>
+
+    <div class="vix-grid">
       <div class="vix-number-wrap">
         <div class="vix-number" id="vix-number">--</div>
         <div class="vix-change" id="vix-change">-</div>
+        <p class="vix-hint">지수 레벨</p>
       </div>
       <div class="vix-chart-wrap">
         <svg id="vix-chart" viewBox="0 0 700 220" aria-label="VIX timeline"></svg>
       </div>
-      <p class="source">출처: <a href="https://finance.yahoo.com/quote/%5EVIX/" target="_blank" rel="noopener">Yahoo Finance — CBOE Volatility Index (^VIX)</a></p>
     </div>
 
-    <div class="bento-tile tile-yardeni">
-      <p class="eyebrow">VALUATION &amp; EARNINGS</p>
-      <h2>Yardeni MSCI 국가별 밸류에이션</h2>
-      <p class="desc">Yardeni Research가 매일 갱신하는 MSCI 한국·미국 지수의 주당 매출, 주당 순이익, 이익률, 밸류에이션(Forward P/E) 차트예요. 원본 이미지를 그대로 불러와서 보여줘요.</p>
+    <p class="source">출처: <a href="https://finance.yahoo.com/quote/%5EVIX/" target="_blank" rel="noopener">Yahoo Finance — CBOE Volatility Index (^VIX)</a></p>
+  </section>
 
-      <div class="yardeni-grid">
-        <div class="yardeni-col">
-          <h3>South Korea</h3>
-          <figure>
-            <figcaption>Figure 3 — Revenues per Share</figcaption>
-            <img loading="lazy" alt="Korea MSCI Revenues per Share"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=8fa9fb04-7ef5-4e2c-b4cb-742fddb3b27f&chartname=3%20-%20MSCI%20Korea%20Revenue%20Per%20Share&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 4 — Earnings per Share</figcaption>
-            <img loading="lazy" alt="Korea MSCI Earnings per Share"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=ae788293-73e9-4f63-9d2d-c02f00460128&chartname=4%20-%20MSCI%20Korea%20Earnings%20Per%20Share&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 5 — Profit Margin</figcaption>
-            <img loading="lazy" alt="Korea MSCI Profit Margin"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=295f4f2c-166e-473b-8c34-cd686340070b&chartname=5%20-%20MSCI%20Korea%20Forward%20Profit%20Margin&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 9 — Valuation Multiple (Forward P/E)</figcaption>
-            <img loading="lazy" alt="Korea MSCI Valuation Multiple"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=2e7101cb-f454-4426-9fa3-247f76d0f4f7&chartname=9a%20-MSCI%20Korea%20Valuation&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-        </div>
-
-        <div class="yardeni-col">
-          <h3>United States</h3>
-          <figure>
-            <figcaption>Figure 3 — Revenues per Share</figcaption>
-            <img loading="lazy" alt="United States MSCI Revenues per Share"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=764b45ab-5ce7-43f7-a578-9c16242fcf48&chartname=3%20-%20MSCI%20United%20States%20Revenue%20Per%20Share&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 4 — Earnings per Share</figcaption>
-            <img loading="lazy" alt="United States MSCI Earnings per Share"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=43218fec-13de-4ff9-a8f5-169fa2f33e82&chartname=4%20-%20MSCI%20United%20States%20Earnings%20Per%20Share&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 5 — Profit Margin</figcaption>
-            <img loading="lazy" alt="United States MSCI Profit Margin"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=fff2de26-be5f-471e-ac54-a7deefe28270&chartname=5%20-%20MSCI%20United%20States%20Forward%20Profit%20Margin&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-          <figure>
-            <figcaption>Figure 9 — Valuation Multiple (Forward P/E)</figcaption>
-            <img loading="lazy" alt="United States MSCI Valuation Multiple"
-                 src="https://product.datastream.com/dscharting/gateway.aspx?guid=ea6e7eba-11dd-493e-90df-d3a924c42b81&chartname=9a%20-MSCI%20United%20States%20Valuation&action=REFRESH"
-                 onerror="this.closest('figure').classList.add('broken')">
-          </figure>
-        </div>
-      </div>
-
-      <p class="source">출처: <a href="https://www.yardeni.com/charts/global-index-briefings/msci-countries/korea" target="_blank" rel="noopener">Yardeni Research — Korea</a> · <a href="https://www.yardeni.com/charts/global-index-briefings/msci-countries/gib-united-states" target="_blank" rel="noopener">Yardeni Research — United States</a> (Data: LSEG Datastream, MSCI)</p>
-    </div>
-
-  </div>
 </main>
 
 <footer class="page-footer">
