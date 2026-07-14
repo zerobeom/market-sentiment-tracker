@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-07-13T08:36:03.506090+00:00",
-  "score": 49.5,
-  "rating": "neutral",
+  "updated_at": "2026-07-14T00:13:40.947305+00:00",
+  "score": 43.7,
+  "rating": "fear",
   "previous_close": {
     "label": "Neutral",
     "value": 49.5
@@ -809,15 +809,15 @@
     },
     {
       "date": "2026-07-10",
-      "value": 49.5
+      "value": 48.4
     },
     {
       "date": "2026-07-13",
-      "value": 49.5
+      "value": 43.7
     },
     {
       "date": "2026-07-13",
-      "value": 49.5
+      "value": 43.7
     }
   ],
   "source": {
