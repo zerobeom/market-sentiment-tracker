@@ -1,28 +1,24 @@
 {
-  "updated_at": "2026-08-24T21:52:53.144624+00:00",
-  "score": 55.0,
+  "updated_at": "2026-08-25T21:52:51.632274+00:00",
+  "score": 58.8,
   "rating": "greed",
   "previous_close": {
     "label": "Greed",
-    "value": 55.2
+    "value": 55.0
   },
   "previous_1_week": {
     "label": "Greed",
-    "value": 58.4
+    "value": 55.1
   },
   "previous_1_month": {
     "label": "Fear",
     "value": 41.3
   },
   "previous_1_year": {
-    "label": "Greed",
-    "value": 55.5
+    "label": "Neutral",
+    "value": 53.9
   },
   "timeline": [
-    {
-      "date": "2025-11-04",
-      "value": 20.9
-    },
     {
       "date": "2025-11-05",
       "value": 23.1
@@ -813,11 +809,15 @@
     },
     {
       "date": "2026-08-24",
-      "value": 55.0
+      "value": 56.1
     },
     {
-      "date": "2026-08-24",
-      "value": 55.0
+      "date": "2026-08-25",
+      "value": 58.8
+    },
+    {
+      "date": "2026-08-25",
+      "value": 58.8
     }
   ],
   "source": {
