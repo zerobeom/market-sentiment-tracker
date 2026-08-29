@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-28T05:31:41.321444+00:00",
-  "score": 57.9,
-  "rating": "greed",
+  "updated_at": "2026-08-29T03:13:49.384036+00:00",
+  "score": 54.4,
+  "rating": "neutral",
   "previous_close": {
     "label": "Greed",
     "value": 58.2
@@ -809,15 +809,15 @@
     },
     {
       "date": "2026-08-27",
-      "value": 57.9
+      "value": 55.4
     },
     {
       "date": "2026-08-28",
-      "value": 57.9
+      "value": 54.4
     },
     {
       "date": "2026-08-28",
-      "value": 57.9
+      "value": 54.4
     }
   ],
   "source": {
