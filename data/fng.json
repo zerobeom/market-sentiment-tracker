@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-06T01:49:20.660261+00:00",
-  "score": 43.1,
-  "rating": "fear",
+  "updated_at": "2026-10-07T00:53:28.553233+00:00",
+  "score": 47.4,
+  "rating": "neutral",
   "previous_close": {
     "label": "Fear",
-    "value": 31.2
+    "value": 43.0
   },
   "previous_1_week": {
     "label": "Fear",
-    "value": 34.4
+    "value": 28.9
   },
   "previous_1_month": {
     "label": "Neutral",
@@ -16,13 +16,9 @@
   },
   "previous_1_year": {
     "label": "Neutral",
-    "value": 52.6
+    "value": 54.0
   },
   "timeline": [
-    {
-      "date": "2025-12-17",
-      "value": 37.7
-    },
     {
       "date": "2025-12-18",
       "value": 42.4
@@ -753,7 +749,7 @@
     },
     {
       "date": "2026-09-14",
-      "value": 31
+      "value": 31.0
     },
     {
       "date": "2026-09-15",
@@ -805,7 +801,7 @@
     },
     {
       "date": "2026-10-01",
-      "value": 28.9
+      "value": 29.0
     },
     {
       "date": "2026-10-02",
@@ -813,11 +809,15 @@
     },
     {
       "date": "2026-10-05",
-      "value": 43.1
+      "value": 43.7
     },
     {
-      "date": "2026-10-05",
-      "value": 43.1
+      "date": "2026-10-06",
+      "value": 47.4
+    },
+    {
+      "date": "2026-10-06",
+      "value": 47.4
     }
   ],
   "source": {
