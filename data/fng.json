@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-18T03:01:20.833638+00:00",
-  "score": 25.2,
-  "rating": "fear",
+  "updated_at": "2026-11-19T02:42:46.168135+00:00",
+  "score": 24.6,
+  "rating": "extreme fear",
   "previous_close": {
     "label": "Fear",
-    "value": 31.0
+    "value": 25.2
   },
   "previous_1_week": {
     "label": "Fear",
-    "value": 37.4
+    "value": 35.9
   },
   "previous_1_month": {
     "label": "Extreme Fear",
@@ -16,13 +16,9 @@
   },
   "previous_1_year": {
     "label": "Extreme Fear",
-    "value": 11.6
+    "value": 8.9
   },
   "timeline": [
-    {
-      "date": "2026-02-03",
-      "value": 43.3
-    },
     {
       "date": "2026-02-04",
       "value": 47.2
@@ -813,11 +809,15 @@
     },
     {
       "date": "2026-11-17",
-      "value": 25.2
+      "value": 26.0
     },
     {
-      "date": "2026-11-17",
-      "value": 25.2
+      "date": "2026-11-18",
+      "value": 24.6
+    },
+    {
+      "date": "2026-11-18",
+      "value": 24.6
     }
   ],
   "source": {
